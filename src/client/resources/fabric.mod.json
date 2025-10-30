@@ -5,18 +5,17 @@
 	"name": "TinyRat",
 	"description": "TinyRat!",
 	"authors": [ "Unknown Author" ],
-	"contact": null,
+	"contact": {},
 	"license": "CC0-1.0",
-	"icon": null,
 	"environment": "*",
 	"entrypoints": {
-		"main": [
-			"com.github.tinyrat.TinyRat"
+		"client": [
+			"com.github.tinyrat.Entry"
 		]
 	},
 	"mixins": [],
 	"depends": {
-		"fabricloader": ">=0.17.3",
+		"fabricloader": ">=0.17.2",
 		"minecraft": "~1.21.5",
 		"java": ">=21",
 		"fabric-api": "*"
