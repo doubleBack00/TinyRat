@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "tinyrat",
+	"version": "${version}",
+	"name": "TinyRat",
+	"description": "TinyRat!",
+	"authors": [ "Unknown Author" ],
+	"contact": null,
+	"license": "CC0-1.0",
+	"icon": null,
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.github.tinyrat.TinyRat"
+		]
+	},
+	"mixins": [],
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
