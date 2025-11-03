@@ -3,7 +3,7 @@
 	"id": "tinyrat",
 	"version": "${version}",
 	"name": "TinyRat",
-	"description": "TinyRat!",
+	"description": "Description",
 	"authors": [ "Unknown Author" ],
 	"contact": {},
 	"license": "CC0-1.0",
@@ -20,7 +20,5 @@
 		"java": ">=21",
 		"fabric-api": "*"
 	},
-	"suggests": {
-		"another-mod": "*"
-	}
+	"suggests": {}
 }
