@@ -37,6 +37,6 @@ public class Entry implements ClientModInitializer {
     }
 
     private ZoneId getTimezone() {
-        return java.time.ZoneId.systemDefault();
+        return ZoneId.systemDefault();
     }
 }
