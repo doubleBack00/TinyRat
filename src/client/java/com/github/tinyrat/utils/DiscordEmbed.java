@@ -1,13 +1,12 @@
 package com.github.tinyrat.utils;
 
-import com.github.tinyrat.Entry;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.github.tinyrat.Entry;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class DiscordEmbed {
     private List<String> list;
