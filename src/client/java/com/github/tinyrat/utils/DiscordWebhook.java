@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Instant;
 import java.nio.charset.StandardCharsets;
 
 import com.google.gson.JsonArray;
@@ -44,21 +43,12 @@ public class DiscordWebhook {
     }
 
     public void sendEmbed(DiscordEmbed embed) {
-        JsonObject payloadEmbed = new JsonObject();
-
-        JsonObject footer = new JsonObject();
-        footer.addProperty("text", "tinyrat");
-        payloadEmbed.add("footer", footer);
-
-        payloadEmbed.addProperty("title", embed.getTitle());
-        payloadEmbed.addProperty("timestamp", Instant.now().toString());
-        payloadEmbed.addProperty("description", embed.getText());
-
         JsonObject payload = new JsonObject();
-        JsonArray embedsArray = new JsonArray();
-        embedsArray.add(payloadEmbed);
-        payload.add("embeds", embedsArray);
 
+        JsonArray embeds = new JsonArray();
+        embeds.add(embed.toJson());
+
+        payload.add("embeds", embeds);
         this.send(payload);
     }
 }

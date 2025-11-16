@@ -1,5 +1,11 @@
 package com.github.tinyrat.utils;
 
+import com.github.tinyrat.Entry;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,19 +18,32 @@ public class DiscordEmbed {
         this.list = new ArrayList<>();
     }
 
-    public void add(String text) {
-        this.list.add(text + "\n");
+    public void addln(String text) {
+        this.list.add(text);
     }
 
-    public String getText() {
-        return String.join("\n", this.list);
-    }
-
-    public String getTitle() {
+    private String getTitle() {
         return title;
     }
 
-    public String render() {
-        return getText();
+    private String getDescription() {
+        return String.join("\n", this.list);
+    }
+
+    private JsonObject getFooter() {
+        JsonObject footer = new JsonObject();
+        footer.addProperty("text", Entry.MOD_ID);
+        return footer;
+    }
+
+    public JsonObject toJson() {
+        JsonObject embedJson = new JsonObject();
+
+        embedJson.add("footer", this.getFooter());
+        embedJson.addProperty("title", this.getTitle());
+        embedJson.addProperty("timestamp", Instant.now().toString());
+        embedJson.addProperty("description", this.getDescription());
+
+        return embedJson;
     }
 }

