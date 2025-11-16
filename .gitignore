@@ -39,4 +39,4 @@ replay_*.log
 *.hprof
 *.jfr
 
-src\client\resources\config.properties
+src/client/resources/config.properties
