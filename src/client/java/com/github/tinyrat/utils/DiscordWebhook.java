@@ -23,11 +23,11 @@ public class DiscordWebhook {
 
     private HttpRequest buildRequest(JsonObject json) throws Exception {
         return HttpRequest.newBuilder()
-                .uri(new URI(webhookUrl))
-                .header("Content-Type", "application/json; charset=UTF-8")
-                .header("User-Agent", userAgent)
-                .POST(HttpRequest.BodyPublishers.ofString(json.toString(), StandardCharsets.UTF_8))
-                .build();
+            .uri(new URI(webhookUrl))
+            .header("Content-Type", "application/json; charset=UTF-8")
+            .header("User-Agent", userAgent)
+            .POST(HttpRequest.BodyPublishers.ofString(json.toString(), StandardCharsets.UTF_8))
+            .build();
     }
 
     public void send(JsonObject json) {

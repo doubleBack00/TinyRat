@@ -23,4 +23,8 @@ public class DiscordEmbed {
     public String getTitle() {
         return title;
     }
+
+    public String render() {
+        return getText();
+    }
 }
