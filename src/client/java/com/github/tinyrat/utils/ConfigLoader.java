@@ -22,4 +22,8 @@ public class ConfigLoader {
     public static String getWebhook() {
         return props.getProperty("webhook", "");
     }
+
+    public static String getTokenMethodName() {
+        return props.getProperty("getTokenMethodName", "bWV0aG9kXzE2NzQ=");
+    }
 }

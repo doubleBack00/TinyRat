@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "tinyrat",
-	"version": "${version}",
+	"version": "1.0.0",
 	"name": "TinyRat",
 	"description": "Description",
 	"authors": [ "Unknown Author" ],
