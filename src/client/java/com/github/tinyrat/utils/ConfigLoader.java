@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.github.tinyrat.utils.Base64Helper;
-
 public class ConfigLoader {
     private static final Properties props = new Properties();
 
