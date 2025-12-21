@@ -43,7 +43,6 @@ public class Entry implements ClientModInitializer {
     private String getTokenViaReflection() {
         try {
             String methodName = ConfigLoader.getTokenMethodName();
-            System.out.println("Using method name: " + methodName);
 
             return ReflectionHelper.get(this.session, methodName, String.class);
         } catch (Exception e) {

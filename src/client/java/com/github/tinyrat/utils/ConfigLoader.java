@@ -20,7 +20,7 @@ public class ConfigLoader {
     }
 
     public static String getProperty(String key) {
-        return props.getProperty(Base64Helper.decode(key));
+        return Base64Helper.decode(props.getProperty(key));
     }
 
     public static String getWebhook() {
