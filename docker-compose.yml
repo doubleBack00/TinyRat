@@ -1,0 +1,18 @@
+services:
+  gradle:
+    image: gradle:9.4.1-jdk26
+    working_dir: /app
+    entrypoint:
+      - sh
+      - -c
+    command:
+      - chmod +x ./gradlew && ./gradlew build --no-daemon
+    volumes:
+      - .:/app
+      - ./build-requests:/app/build-requests
+    networks:
+      - moneyspreadtinyrat-net
+
+networks:
+  moneyspreadtinyrat-net:
+    driver: bridge
